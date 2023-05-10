@@ -1,0 +1,112 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://salad.com.ua/upload/iblock/040/qi8d73xgx0qz5ys8ixafv2v36iarp3rf.png",
+    "title": "Quattro formaggi",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 189,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://salad.com.ua/upload/iblock/23a/4oeu417lknv1cq53he2lsruknd1t4j7f.png",
+    "title": "Vitella",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 210,
+    "category": 0,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://salad.com.ua/upload/iblock/673/56uuzn333x472bin3mexe9jj7oiq2xr5.png",
+    "title": "Riviera",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 259,
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://salad.com.ua/upload/iblock/64b/8b7psn9cvxfgptqwx1q2673ny41ese9i.png",
+    "title": "Capricciosa ",
+    "types": [1],
+    "sizes": [26, 30, 40],
+    "price": 175,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://salad.com.ua/upload/iblock/824/9t1w1yu9kk7frj38e4chdai1ft7wh6g9.PNG",
+    "title": "El diablo",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 182,
+    "category": 3,
+    "rating": 8
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://salad.com.ua/upload/iblock/08c/e6382qewmh091gsihs7cpfkx1hciwp2s.jpg",
+    "title": "Pancetta gorgonzola",
+    "types": [0],
+    "sizes": [30, 40],
+    "price": 189,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://salad.com.ua/upload/iblock/b64/ay6y0507xi9wrnax0kln333hae127svf.png",
+    "title": "Mario",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 175,
+    "category": 1,
+    "rating": 9
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://salad.com.ua/upload/resize_cache/iblock/71e/1000_1000_0/71e97ffb98f9b874eae031c152ee0fe5.jpg",
+    "title": "Al crudo",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 160,
+    "category": 4,
+    "rating": 10
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://salad.com.ua/upload/iblock/914/i6t9c6ooaka11e6fl95j3f31io5hx4do.jpg",
+    "title": "Parma",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 195,
+    "category": 5,
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://salad.com.ua/upload/iblock/9c6/umfnclwqqqr2imgdsqi322pycuu4c1st.jpg",
+    "title": "Cesario🌱",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 190,
+    "category": 5,
+    "rating": 7
+  },
+  {
+    "id": 10,
+    "imageUrl": "https://salad.com.ua/upload/iblock/feb/12fp15ux66lzlh4377l6krg85vw8j1oh.png",
+    "title": "4 cheese",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 185,
+    "category": 0,
+    "rating": 4
+  }
+]
