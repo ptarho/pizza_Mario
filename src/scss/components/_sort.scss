@@ -3,6 +3,12 @@
 .sort {
   position: relative;
   &__label {
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
     display: flex;
     align-items: center;
 
@@ -19,9 +25,13 @@
       border-bottom: 1px dashed $orange;
       cursor: pointer;
     }
+    @media (max-width: 1040px) {
+      flex-direction: column;
+    }
   }
 
   &__popup {
+    z-index: 10;
     position: absolute;
     right: 0;
     margin-top: 15px;
@@ -50,4 +60,5 @@
       }
     }
   }
+  
 }

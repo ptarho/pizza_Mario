@@ -1,0 +1,20 @@
+@import '../../scss/templates';
+
+.errorPage {
+  @extend %flex-column;
+  width: 100vw;
+  height: 100vh;
+
+  
+  .container{
+    @extend %flex-column;
+    background-color: #e6e4e4;
+    border-radius: 10px;
+    width: 80%;
+    height: 40%; 
+  }
+  .emoji {
+    font-size: 40px;
+  }
+
+}

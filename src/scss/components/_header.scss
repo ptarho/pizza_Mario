@@ -30,4 +30,19 @@
       color: #7b7b7b;
     }
   }
+
+  @media (max-width: 650px) {
+    padding: 25 px 0;
+    .container {
+      flex-direction: column;
+    }
+
+    .header__cart {
+      margin-top: 20px;
+      min-width: 70%;
+      a {
+        justify-content: center;
+      }
+    }
+  }
 }
