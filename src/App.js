@@ -10,7 +10,6 @@ function App() {
       <div className="wrapper">
         <Header />
         <div className="content">
-          {/*  */}
           <Outlet />
         </div>
       </div>

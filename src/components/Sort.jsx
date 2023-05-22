@@ -1,11 +1,23 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { changeSort } from "../redux/slices/sortSlice";
 
-function Sort({ sortBy, setSortBy }) {
+function Sort() {
   const [isOpened, setIsOpened] = React.useState(false);
-  const sortList = ["rating", "price", "title"];
+  const sortList = [
+    { value: "rating ↑", order: "ASC" },
+    { value: "rating ↓", order: "DESC" },
+    { value: "price ↑", order: "ASC" },
+    { value: "price ↓", order: "DESC" },
+    { value: "title ↑", order: "ASC" },
+    { value: "title ↓", order: "DESC" },
+  ];
+
+  const dispatch = useDispatch();
+  const sortBy = useSelector((state) => state.sort.value);
 
   const changeCategory = (category) => {
-    setSortBy(category);
+    dispatch(changeSort(category));
     setIsOpened(false);
   };
 
@@ -27,21 +39,19 @@ function Sort({ sortBy, setSortBy }) {
           </svg>
           <b>Sort by:</b>
         </div>
-        <span onClick={() => setIsOpened((prev) => !prev)}>
-          {sortBy}
-        </span>
+        <span onClick={() => setIsOpened((prev) => !prev)}>{sortBy}</span>
       </div>
       {isOpened && (
         <div className="sort__popup">
           <ul>
-            {sortList.map(category => {
+            {sortList.map((category) => {
               return (
                 <li
-                  key={category}
+                  key={category.value}
                   onClick={() => changeCategory(category)}
-                  className={category === sortBy ? "active" : undefined}
+                  className={category.value === sortBy ? "active" : undefined}
                 >
-                  {category}
+                  {category.value}
                 </li>
               );
             })}

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -11,88 +12,45 @@ import Pagination from "../components/Pagination";
 function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [activeCategory, setActiveCategory] = React.useState(0);
-  const [sortBy, setSortBy] = React.useState("rating");
-  const [searchValue, setSearchValue] = React.useState("");
 
-  const pizzasOnPage = 4;
+  const searchValue = useSelector((state) => state.search.value);
+  const activeCategory = useSelector((state) => state.filter.value);
+  const sortBy = useSelector((state) => state.sort.value);
+  const order = useSelector((state) => state.sort.order);
+
+  const pizzasOnPage = 6;
   const [page, setPage] = React.useState(0);
   //console.log(pizzas);
 
   React.useEffect(() => {
     setIsLoading(true);
+    console.log(process.env.REACT_APP_SERVER_URL);
     axios
-      .get("https://run.mocky.io/v3/68e5a690-e155-41fd-a02a-b36c03888977")
-      .then((res) =>
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/?title=${searchValue}&category=${activeCategory}&sortBy=${sortBy}&order=${order}`
+      )
+      .then((res) => {
+        // delay to display skeletons, remove in production build
+        console.log(res);
         setTimeout(() => {
-          setPage(0)
-          if (activeCategory === 0) {
-            setPizzas(
-              res.data
-                .filter((e) =>
-                  e.title.toLowerCase().includes(searchValue.toLowerCase())
-                )
-                .sort((a, b) => {
-                  if (typeof a[sortBy] === "number") {
-                    //console.log('number')
-                    return a[sortBy] - b[sortBy];
-                  } else {
-                    //console.log("string")
-                    return a[sortBy].localeCompare(b[sortBy]);
-                  }
-                })
-            );
-          } else {
-            setPizzas(
-              res.data
-                .filter((e) => e.category === activeCategory)
-                .filter((e) =>
-                  e.title.toLowerCase().includes(searchValue.toLowerCase())
-                )
-                .sort((a, b) => {
-                  if (typeof a[sortBy] === "number") {
-                    //console.log('number')
-                    return a[sortBy] - b[sortBy];
-                  } else {
-                    //console.log("string")
-                    return a[sortBy].localeCompare(b[sortBy]);
-                  }
-                })
-            );
-          }
-          console.log(activeCategory);
+          setPage(0);
+          setPizzas(res.data);
           setIsLoading(false);
-        }, 500)
-      );
-    console.log("SCROLL")
+        }, 700);
+      });
+    console.log("SCROLL");
     window.scrollTo(0, 50);
-  }, [activeCategory, searchValue]);
-
-  React.useEffect(() => {
-    setPizzas((prevPizzas) =>
-      prevPizzas.slice().sort((a, b) => {
-        if (typeof a[sortBy] === "number") {
-          return a[sortBy] - b[sortBy];
-        } else {
-          return a[sortBy].localeCompare(b[sortBy]);
-        }
-      })
-    );
-  }, [sortBy]);
+  }, [activeCategory, searchValue, sortBy]);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories active={activeCategory} setActive={setActiveCategory} />
-        <Sort {...{ sortBy, setSortBy }} />
+        <Categories />
+        <Sort />
       </div>
       <div className="content__header">
         <h2 className="content__title">All pizzas</h2>
-        <Search
-          value={searchValue}
-          setValue={setSearchValue}
-          filter={setPizzas}
-        />
+        <Search />
       </div>
       <div className="content__items">
         {isLoading
@@ -100,7 +58,7 @@ function Home() {
               return <Skeleton key={i} />;
             })
           : pizzas
-              .slice(page * pizzasOnPage, page * pizzasOnPage + 4)
+              .slice(page * pizzasOnPage, page * pizzasOnPage + pizzasOnPage)
               .map((obj) => {
                 return <Pizza key={obj.id} {...obj} />;
               })}
