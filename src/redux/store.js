@@ -4,6 +4,7 @@ import searchReducer from "./slices/searchSlice"
 import filterReducer from "./slices/filterSlice"
 import sortSlice from "./slices/sortSlice"
 import pageSlice from "./slices/pageSlice"
+import mountSlice from "./slices/mountSlice"
 
 export default configureStore({
   reducer: {
@@ -11,5 +12,6 @@ export default configureStore({
     filter: filterReducer,
     sort: sortSlice,
     page: pageSlice,
+    mount: mountSlice
   },
 })

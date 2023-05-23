@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { changeSort } from "../redux/slices/sortSlice";
 import { changeCategory } from "../redux/slices/filterSlice";
 import { changePage } from "../redux/slices/pageSlice";
+import { changeMount } from "../redux/slices/mountSlice";
 
 function Header() {
   const dispatch = useDispatch()
@@ -12,6 +13,7 @@ function Header() {
     dispatch(changeCategory(0))
     dispatch(changePage(0))
     dispatch(changeSort("rating ↑"))
+    dispatch(changeMount(false))
   }
 
   return (

@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-import qs from "qs"
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -14,15 +13,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { changePage, changePageAmount } from "../redux/slices/pageSlice";
 import { changeCategory } from "../redux/slices/filterSlice";
 import { changeSort } from "../redux/slices/sortSlice";
+import { changeMount } from "../redux/slices/mountSlice";
 
 function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const isSearchParams = React.useRef(false)
-  const isMounted = React.useRef(false)
 
-  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const isSearchParams = React.useRef(false)
+  
+  // const navigate = useNavigate()
   const dispatch = useDispatch();
+  const isMounted = useSelector((state) => state.mount.value);
   const searchValue = useSelector((state) => state.search.value);
   const activeCategory = useSelector((state) => state.filter.value);
   const sortBy = useSelector((state) => state.sort.value);
@@ -41,7 +43,7 @@ function Home() {
         //console.log(res);
         setTimeout(() => {
           dispatch(changePageAmount(Math.ceil(res.data.length / pizzasOnPage)));
-          dispatch(changePage(0));
+          if (!searchParams.get("page")) dispatch(changePage(0));
           setPizzas(res.data);
           setIsLoading(false);
         }, 700);
@@ -49,20 +51,18 @@ function Home() {
       window.scrollTo(0, 50);
   }
 
-  //console.log(sortBy)
+
   // if we open app via url with params save them in redux
   React.useEffect(() => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1))
-      console.log("PARAMS IS HERE")
-      dispatch(changeSort(params.sort))
-      dispatch(changeCategory(params.category))
-      dispatch(changePage(params.page - 1))
-      
+    if (searchParams.size) {
+      const params = Object.fromEntries(searchParams.entries());
+      if (params.category) dispatch(changeCategory(params.category))
+      if (params.sort) dispatch(changeSort(params.sort))
+      if (params.page) dispatch(changePage(params.page - 1))
 
       isSearchParams.current = true
     }
-  }, [])
+  }, [searchParams])
   
   // if there is no params fetch pizzas with default params from redux
   React.useEffect(() => {
@@ -74,16 +74,16 @@ function Home() {
 
   // if home page was mounted save params in url when they changes
   React.useEffect(() => {
-    if (isMounted.current) {
-      const queryString = qs.stringify({
+    if (isMounted) {
+      const queryString = {
         category: activeCategory,
         sort: sortBy,
         page: page + 1,
-      })
-      navigate(`?${queryString}`)
+      }
+      setSearchParams(queryString)
       console.log(queryString)
     } else {
-      isMounted.current = true
+      dispatch(changeMount(true))
     }
   }, [activeCategory, sortBy, page])
 
