@@ -1,12 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { changeSort } from "../redux/slices/sortSlice";
+import { changeCategory } from "../redux/slices/filterSlice";
+import { changePage } from "../redux/slices/pageSlice";
+
 function Header() {
+  const dispatch = useDispatch()
+  const onClickHome = () => {
+    dispatch(changeCategory(0))
+    dispatch(changePage(0))
+    dispatch(changeSort("rating ↑"))
+  }
+
   return (
     <div className="header">
       <div className="container">
         <div className="header__logo">
-          <Link to="/">
+          <Link onClick={onClickHome} to="/">
             <img width="38" src="img/mario_logo.jpg" alt="Pizza logo" />
           </Link>
           <div>

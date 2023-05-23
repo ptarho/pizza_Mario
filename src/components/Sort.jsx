@@ -48,7 +48,7 @@ function Sort() {
               return (
                 <li
                   key={category.value}
-                  onClick={() => changeCategory(category)}
+                  onClick={() => changeCategory(category.value)}
                   className={category.value === sortBy ? "active" : undefined}
                 >
                   {category.value}
