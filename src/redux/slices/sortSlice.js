@@ -9,7 +9,6 @@ export const sortSlice = createSlice({
   initialState,
   reducers: {
     changeSort: (state, action) => {
-      console.log(action)
       state.value = action.payload;
     },
   },

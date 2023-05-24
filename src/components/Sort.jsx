@@ -4,6 +4,7 @@ import { changeSort } from "../redux/slices/sortSlice";
 
 function Sort() {
   const [isOpened, setIsOpened] = React.useState(false);
+  const sortRef = React.useRef()
   const sortList = [
     { value: "rating ↑", order: "ASC" },
     { value: "rating ↓", order: "DESC" },
@@ -18,11 +19,24 @@ function Sort() {
 
   const changeCategory = (category) => {
     dispatch(changeSort(category));
-    setIsOpened(false);
+    //setIsOpened(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.composedPath().includes(sortRef.current)) {
+        setIsOpened(false)
+      }
+    }
+    document.body.addEventListener("click", handleClickOutside)
+
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside)
+    }
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <div className="sort__label-wrapper">
           <svg
@@ -48,7 +62,7 @@ function Sort() {
               return (
                 <li
                   key={category.value}
-                  onClick={() => changeCategory(category.value)}
+                  onClick={() => dispatch(changeSort(category.value))}
                   className={category.value === sortBy ? "active" : undefined}
                 >
                   {category.value}

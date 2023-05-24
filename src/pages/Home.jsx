@@ -61,8 +61,9 @@ function Home() {
       if (params.page) dispatch(changePage(params.page - 1))
 
       isSearchParams.current = true
+      //fetchPizzas()
     }
-  }, [searchParams])
+  }, [])
   
   // if there is no params fetch pizzas with default params from redux
   React.useEffect(() => {

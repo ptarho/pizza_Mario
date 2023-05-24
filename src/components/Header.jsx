@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeSort } from "../redux/slices/sortSlice";
 import { changeCategory } from "../redux/slices/filterSlice";
 import { changePage } from "../redux/slices/pageSlice";
@@ -15,6 +15,9 @@ function Header() {
     dispatch(changeSort("rating ↑"))
     dispatch(changeMount(false))
   }
+
+  const {totalSum, items} = useSelector(state => state.cart)
+  const pizzaAmount = items.reduce((sum,obj) => sum + obj.count, 0)
 
   return (
     <div className="header">
@@ -30,7 +33,7 @@ function Header() {
         </div>
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
-            <span>20 $</span>
+            <span>{totalSum} ₴</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -61,7 +64,7 @@ function Header() {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>3</span>
+            <span>{pizzaAmount}</span>
           </Link>
         </div>
       </div>

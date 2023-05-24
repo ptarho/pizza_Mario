@@ -1,17 +1,28 @@
 import React from "react";
 
-function Pizza({ title, price, sizes, imageUrl, types }) {
+import { useDispatch } from "react-redux";
+import { addItem } from "../../redux/slices/cartSlice";
+
+function Pizza({ id, title, price, sizes, imageUrl, types }) {
+  const dispatch = useDispatch()
   const typeNames = ["Thin", "Traditional"];
   const [counter, setCounter] = React.useState(0);
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
 
   const addPizza = () => {
+    const pizza = {
+      id,
+      title,
+      price,
+      imageUrl,
+      type: typeNames[activeType],
+      size: sizes[activeSize]
+    }
+    dispatch(addItem(pizza))
     setCounter((prev) => ++prev);
   };
-  // const chooseSize = (size) => {
-  //   setActiveSize(size);
-  // };
+
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />

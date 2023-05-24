@@ -5,6 +5,7 @@ import filterReducer from "./slices/filterSlice"
 import sortSlice from "./slices/sortSlice"
 import pageSlice from "./slices/pageSlice"
 import mountSlice from "./slices/mountSlice"
+import cartSlice from "./slices/cartSlice"
 
 export default configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
     filter: filterReducer,
     sort: sortSlice,
     page: pageSlice,
-    mount: mountSlice
+    mount: mountSlice,
+    cart: cartSlice
   },
 })
