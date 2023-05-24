@@ -10,67 +10,62 @@ import Search from "../components/Search";
 import Pagination from "../components/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
-import { changePage, changePageAmount } from "../redux/slices/pageSlice";
-import { changeCategory } from "../redux/slices/filterSlice";
-import { changeSort } from "../redux/slices/sortSlice";
-import { changeMount } from "../redux/slices/mountSlice";
+import { changePage, pageSelector } from "../redux/slices/pageSlice";
+import { changeCategory, categorySelector } from "../redux/slices/filterSlice";
+import { changeSort, sortSelector } from "../redux/slices/sortSlice";
+import { changeMount, mountSelector } from "../redux/slices/mountSlice";
+import { fetchPizzas, pizzaSelector } from "../redux/slices/pizzaSlice";
+import { searchSelector } from "../redux/slices/searchSlice";
 
 function Home() {
-  const [pizzas, setPizzas] = React.useState([]);
+  //const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  const isSearchParams = React.useRef(false)
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isSearchParams = React.useRef(false);
+
   // const navigate = useNavigate()
   const dispatch = useDispatch();
-  const isMounted = useSelector((state) => state.mount.value);
-  const searchValue = useSelector((state) => state.search.value);
-  const activeCategory = useSelector((state) => state.filter.value);
-  const sortBy = useSelector((state) => state.sort.value);
-  const { page } = useSelector((state) => state.page);
+  const isMounted = useSelector(mountSelector);
+  const searchValue = useSelector(searchSelector);
+  const activeCategory = useSelector(categorySelector);
+  const sortBy = useSelector(sortSelector);
+  const pizzas = useSelector(pizzaSelector);
+  const page = useSelector(pageSelector);
+  console.log(pizzas)
 
   const pizzasOnPage = 6;
 
-  const fetchPizzas = () => {
+  const getPizzas = async () => {
     setIsLoading(true);
-    axios
-      .get(
-        `${process.env.REACT_APP_SERVER_URL}/?title=${searchValue}&category=${activeCategory}&sortBy=${sortBy}`
-      )
-      .then((res) => {
-        // delay to display skeletons, remove in production build
-        //console.log(res);
-        setTimeout(() => {
-          dispatch(changePageAmount(Math.ceil(res.data.length / pizzasOnPage)));
-          if (!searchParams.get("page")) dispatch(changePage(0));
-          setPizzas(res.data);
-          setIsLoading(false);
-        }, 700);
-      });
-      window.scrollTo(0, 50);
-  }
+    console.log("FETCHING")
+    
+    dispatch(fetchPizzas({activeCategory, sortBy, searchValue, pizzasOnPage}))
+    if (!searchParams.get("page")) dispatch(changePage(0));
 
+    setIsLoading(false);
+    //window.scrollTo(0, 0);  
+  };
 
   // if we open app via url with params save them in redux
   React.useEffect(() => {
     if (searchParams.size) {
       const params = Object.fromEntries(searchParams.entries());
-      if (params.category) dispatch(changeCategory(params.category))
-      if (params.sort) dispatch(changeSort(params.sort))
-      if (params.page) dispatch(changePage(params.page - 1))
+      if (params.category) dispatch(changeCategory(params.category));
+      if (params.sort) dispatch(changeSort(params.sort));
+      if (params.page) dispatch(changePage(params.page - 1));
 
-      isSearchParams.current = true
-      //fetchPizzas()
+      isSearchParams.current = true;
+      getPizzas()
     }
-  }, [])
-  
+  }, []);
+
   // if there is no params fetch pizzas with default params from redux
   React.useEffect(() => {
     if (!isSearchParams.current) {
-      fetchPizzas()
+      getPizzas();
     }
-    isSearchParams.current = false
+    isSearchParams.current = false;
   }, [activeCategory, searchValue, sortBy]);
 
   // if home page was mounted save params in url when they changes
@@ -80,13 +75,13 @@ function Home() {
         category: activeCategory,
         sort: sortBy,
         page: page + 1,
-      }
-      setSearchParams(queryString)
-      console.log(queryString)
+      };
+      setSearchParams(queryString);
+      console.log(queryString);
     } else {
-      dispatch(changeMount(true))
+      dispatch(changeMount(true));
     }
-  }, [activeCategory, sortBy, page])
+  }, [activeCategory, sortBy, page]);
 
   return (
     <div className="container">

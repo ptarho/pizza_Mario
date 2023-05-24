@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeSort } from "../redux/slices/sortSlice";
+import { changeSort, sortSelector } from "../redux/slices/sortSlice";
 
 function Sort() {
   const [isOpened, setIsOpened] = React.useState(false);
@@ -15,7 +15,7 @@ function Sort() {
   ];
 
   const dispatch = useDispatch();
-  const sortBy = useSelector((state) => state.sort.value);
+  const sortBy = useSelector(sortSelector);
 
   const changeCategory = (category) => {
     dispatch(changeSort(category));

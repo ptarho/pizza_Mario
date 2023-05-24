@@ -1,19 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit";
 
-import searchReducer from "./slices/searchSlice"
-import filterReducer from "./slices/filterSlice"
-import sortSlice from "./slices/sortSlice"
-import pageSlice from "./slices/pageSlice"
-import mountSlice from "./slices/mountSlice"
-import cartSlice from "./slices/cartSlice"
+import search from "./slices/searchSlice";
+import filter from "./slices/filterSlice";
+import sort from "./slices/sortSlice";
+import page from "./slices/pageSlice";
+import mount from "./slices/mountSlice";
+import cart from "./slices/cartSlice";
+import pizza from "./slices/pizzaSlice";
 
 export default configureStore({
   reducer: {
-    search: searchReducer,
-    filter: filterReducer,
-    sort: sortSlice,
-    page: pageSlice,
-    mount: mountSlice,
-    cart: cartSlice
+    search,
+    filter,
+    sort,
+    page,
+    mount,
+    cart,
+    pizza,
   },
-})
+});

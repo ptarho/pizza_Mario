@@ -15,5 +15,6 @@ export const mountSlice = createSlice({
 });
 
 export const { changeMount } = mountSlice.actions;
+export const mountSelector = (state) => state.mount.value
 
 export default mountSlice.reducer;

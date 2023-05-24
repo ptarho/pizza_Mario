@@ -6,6 +6,7 @@ import { changeSort } from "../redux/slices/sortSlice";
 import { changeCategory } from "../redux/slices/filterSlice";
 import { changePage } from "../redux/slices/pageSlice";
 import { changeMount } from "../redux/slices/mountSlice";
+import { cartSelector } from "../redux/slices/cartSlice";
 
 function Header() {
   const dispatch = useDispatch()
@@ -16,7 +17,8 @@ function Header() {
     dispatch(changeMount(false))
   }
 
-  const {totalSum, items} = useSelector(state => state.cart)
+  const {totalSum, items} = useSelector(cartSelector)
+  console.log(totalSum, items)
   const pizzaAmount = items.reduce((sum,obj) => sum + obj.count, 0)
 
   return (
