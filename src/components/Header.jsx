@@ -18,7 +18,7 @@ function Header() {
   }
 
   const {totalSum, items} = useSelector(cartSelector)
-  console.log(totalSum, items)
+  //console.log(totalSum, items)
   const pizzaAmount = items.reduce((sum,obj) => sum + obj.count, 0)
 
   return (
@@ -26,7 +26,7 @@ function Header() {
       <div className="container">
         <div className="header__logo">
           <Link onClick={onClickHome} to="/">
-            <img width="38" src="img/mario_logo.jpg" alt="Pizza logo" />
+            <img width="38" src="/img/mario_logo.jpg" alt="Pizza logo" />
           </Link>
           <div>
             <h1>Pizza Mario</h1>

@@ -1,0 +1,25 @@
+.info {
+  margin: 50px auto;
+  display: flex;
+  overflow: hidden;
+  border-radius: 15px;
+  max-width: 1100px;
+  .details {
+    padding: 15px 20px 5px;
+    background-color: #f3f3f3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .image {
+    width: 300px;
+    height: 300px;
+  }
+  .description {
+    margin-top: 10px;
+    margin-bottom: auto;
+  }
+}

@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+
 import search from "./slices/searchSlice";
 import filter from "./slices/filterSlice";
 import sort from "./slices/sortSlice";

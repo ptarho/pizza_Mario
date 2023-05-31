@@ -8,6 +8,7 @@ import App from "./App";
 import Error from "./pages/Error/Error";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
+import FullPizza from "./components/FullPizza"
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         path: "cart",
         element: <Cart />,
       },
+      {
+        path:"pizza/:id",
+        element: <FullPizza />
+      }
     ],
   },
 ]);

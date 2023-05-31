@@ -20,7 +20,7 @@ import { searchSelector } from "../redux/slices/searchSlice";
 function Home() {
   //const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-
+  
   const [searchParams, setSearchParams] = useSearchParams();
   const isSearchParams = React.useRef(false);
 
