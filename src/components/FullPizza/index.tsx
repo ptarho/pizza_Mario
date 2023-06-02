@@ -1,58 +1,75 @@
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./FullPizza.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 import getPizzaAmount from "../../utils/getPizzaAmount";
+import { pizzaInfo } from "../../@types/pizzaInfo";
+
+type cartPizza = {
+  id: number;
+  title: string;
+  price: number;
+  imageUrl: string;
+  type: string;
+  size: number;
+}
 
 function FullPizza() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const typeNames = ["Thin", "Traditional"];
-  const [info, setInfo] = React.useState({});
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [pizza, setPizza] = React.useState<pizzaInfo>();
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
 
-  const pizzaAmount = getPizzaAmount(Number(id))
-  console.log(pizzaAmount)
-  const [counter, setCounter] = React.useState(pizzaAmount || 0);
-
-  const addPizza = () => {
-    const pizza = {
-      id: info.id,
-      title: info.title,
-      price: info.price,
-      imageUrl: info.imageUrl,
-      type: typeNames[activeType],
-      size: info.sizes[activeSize],
-    };
-    dispatch(addItem(pizza));
-    setCounter((prev) => ++prev);
-  };
+  const pizzaAmount = getPizzaAmount(Number(id));
+  //console.log(pizzaAmount);
+  const [counter, setCounter] = React.useState(pizzaAmount);
 
   React.useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/${id}`)
       .then((res) => {
         console.log(res);
-        setInfo(res.data);
+        setPizza(res.data);
       })
-      .catch((err) => console.log(err));
-    setIsLoading(false);
+      .catch((err) => {
+        console.log(err);
+        alert(err);
+        navigate("/");
+      });
   }, []);
-  console.log(info);
+  console.log(pizza);
 
-  return !isLoading ? (
-    <div className={styles.info}>
-      <img className={styles.image} src={info.imageUrl} alt="Pizza" />
+  if (!pizza) {
+    return <p>Data is loading</p>;
+  }
+
+  const addPizza = () => {
+    const item: cartPizza = {
+      id: pizza.id,
+      title: pizza.title,
+      price: pizza.price,
+      imageUrl: pizza.imageUrl,
+      type: typeNames[activeType],
+      size: pizza.sizes[activeSize],
+    };
+    dispatch(addItem(item));
+    setCounter((prev) => ++prev);
+  };
+
+  return (
+    <div className={styles.pizza}>
+      <img className={styles.image} src={pizza.imageUrl} alt="Pizza" />
       <div className={styles.details}>
-        <h4 className={styles.title}>{info.title}</h4>
-        <p className={styles.description}>{info.description}</p>
+        <h4 className={styles.title}>{pizza.title}</h4>
+        <p className={styles.description}>{pizza.description}</p>
         <div className="pizza-block__selector">
           <ul>
-            {info.types?.map((type, index) => {
+            {pizza.types?.map((type, index) => {
               return (
                 <li
                   key={type}
@@ -65,7 +82,7 @@ function FullPizza() {
             })}
           </ul>
           <ul>
-            {info.sizes?.map((size, index) => {
+            {pizza.sizes?.map((size, index) => {
               return (
                 <li
                   key={size}
@@ -78,7 +95,7 @@ function FullPizza() {
             })}
           </ul>
           <div className="pizza-block__bottom">
-            <div className="pizza-block__price">from {info.price  }₴</div>
+            <div className="pizza-block__price">from {pizza.price}₴</div>
             <div
               onClick={addPizza}
               className="button button--outline button--add"
@@ -102,8 +119,6 @@ function FullPizza() {
         </div>
       </div>
     </div>
-  ) : (
-    <div>Fetching pizza data...</div>
   );
 }
 

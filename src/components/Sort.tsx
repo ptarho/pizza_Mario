@@ -2,29 +2,30 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeSort, sortSelector } from "../redux/slices/sortSlice";
 
+type sortListItem = {
+  value: string;
+  order: string;
+}
+
 function Sort() {
   const [isOpened, setIsOpened] = React.useState(false);
-  const sortRef = React.useRef()
-  const sortList = [
+  const sortRef = React.useRef<HTMLDivElement>(null)
+  const sortList: sortListItem[] = [
     { value: "rating ↑", order: "ASC" },
     { value: "rating ↓", order: "DESC" },
     { value: "price ↑", order: "ASC" },
     { value: "price ↓", order: "DESC" },
-    { value: "title ↑", order: "ASC" },
-    { value: "title ↓", order: "DESC" },
+    { value: "title ↑", order: "ASC" }, 
+    { value: "title ↓", order: "DESC" }
   ];
 
   const dispatch = useDispatch();
   const sortBy = useSelector(sortSelector);
 
-  const changeCategory = (category) => {
-    dispatch(changeSort(category));
-    //setIsOpened(false);
-  };
-
   React.useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      console.log(e)
+      if (sortRef.current && !e.composedPath().includes(sortRef.current)) {
         setIsOpened(false)
       }
     }
@@ -58,14 +59,14 @@ function Sort() {
       {isOpened && (
         <div className="sort__popup">
           <ul>
-            {sortList.map((category) => {
+            {sortList.map((sortItem) => {
               return (
                 <li
-                  key={category.value}
-                  onClick={() => dispatch(changeSort(category.value))}
-                  className={category.value === sortBy ? "active" : undefined}
+                  key={sortItem.value}
+                  onClick={() => dispatch(changeSort(sortItem.value))}
+                  className={sortItem.value === sortBy ? "active" : undefined}
                 >
-                  {category.value}
+                  {sortItem.value}
                 </li>
               );
             })}

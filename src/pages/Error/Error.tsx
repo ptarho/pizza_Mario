@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouteError } from "react-router-dom";
+import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 
 import styles from "./Error.module.scss";
 console.log(styles);
@@ -7,7 +7,7 @@ console.log(styles);
 function Error() {
   const error = useRouteError();
   console.error(error);
-
+  
   return (
     <div className={styles.errorPage}>
       <div className={styles.container}>
@@ -15,7 +15,7 @@ function Error() {
         <p className={styles.emoji}>😢</p>
         <p>Sorry, an unexpected error has occurred </p>
         <p>
-          <i>{error.statusText || error.message}</i>
+          {isRouteErrorResponse(error) ? <i>{error.statusText || error.status}</i> : <i>Unknown error occurred </i>}
         </p>
       </div>
     </div>

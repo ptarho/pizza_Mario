@@ -17,9 +17,9 @@ function Header() {
     dispatch(changeMount(false))
   }
 
-  const {totalSum, items} = useSelector(cartSelector)
+  const {items, totalSum} = useSelector(cartSelector)
   //console.log(totalSum, items)
-  const pizzaAmount = items.reduce((sum,obj) => sum + obj.count, 0)
+  const pizzaAmount = items.reduce((sum, obj) => sum + obj.count, 0)
 
   return (
     <div className="header">

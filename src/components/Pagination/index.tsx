@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from "./Pagination.module.scss" 
 import { useSelector, useDispatch } from 'react-redux';
-import { changePage } from '../../redux/slices/pageSlice';
+import { changePage, pageSelector } from '../../redux/slices/pageSlice';
 
 function Pagination() {
   const dispatch = useDispatch()
-  const {page, amount} = useSelector(state => state.page)
+  const {page, amount} = useSelector(pageSelector)
   //console.log(page, amount)
-  const onChangePage = (page) => {
+  const onChangePage = (page: number) => {
     dispatch(changePage(page))
     window.scrollTo(0,200)
   }

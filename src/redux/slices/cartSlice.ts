@@ -1,7 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { calcTotalSum } from "../../utils/calcTotalSum";
+import { CartPizza } from "../../@types/cartPizza";
+import { RootState } from "../store";
+import { SinglePizza } from "../../@types/singlePizza";
 
-const initialState = {
+
+type CartState = {
+  items: CartPizza[];
+  totalSum: number;
+}
+
+const initialState: CartState = {
   items: [],
   totalSum: 0,
 };
@@ -11,7 +20,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     // addItem(obj) or addItem({id})
-    addItem: (state, action) => {
+    addItem: (state, action: PayloadAction<SinglePizza>) => {
       const pizza = state.items.find((obj) => {
         return (
           obj.id === action.payload.id &&
@@ -19,30 +28,30 @@ export const cartSlice = createSlice({
           obj.size === action.payload.size
         );
       });
-      console.log(pizza)
+      //console.log(pizza);
       if (pizza) {
         pizza.count++;
       } else {
         state.items.push({ ...action.payload, count: 1 });
       }
-      console.log(action);
+      //console.log(action);
       state.totalSum = calcTotalSum(state.items);
     },
     // minusItem({id, type, size})
-    minusItem: (state, action) => {
+    minusItem: (state, action: PayloadAction<{id:number; type: string; size: number}>) => {
       const pizza = state.items.find(
         (obj) =>
           obj.id === action.payload.id &&
           obj.type === action.payload.type &&
           obj.size === action.payload.size
       );
-      if (pizza.count > 0) {
+      if (pizza && pizza.count > 0) {
         pizza.count--;
       }
       state.totalSum = calcTotalSum(state.items);
     },
     // removeItem({id, type, size})
-    removeItem: (state, action) => {
+    removeItem: (state,  action: PayloadAction<{id:number; type: string; size: number}>) => {
       const pizza = state.items.find(
         (obj) =>
           obj.id === action.payload.id &&
@@ -61,6 +70,6 @@ export const cartSlice = createSlice({
 });
 
 export const { addItem, minusItem, removeItem, clearCart } = cartSlice.actions;
-export const cartSelector = (state) => state.cart
+export const cartSelector = (state: RootState)  => state.cart;
 
 export default cartSlice.reducer;

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 
 import Categories from "../components/Categories";
@@ -9,30 +8,29 @@ import Skeleton from "../components/Pizza/Skeleton";
 import Search from "../components/Search";
 import Pagination from "../components/Pagination";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { changePage, pageSelector } from "../redux/slices/pageSlice";
 import { changeCategory, categorySelector } from "../redux/slices/filterSlice";
 import { changeSort, sortSelector } from "../redux/slices/sortSlice";
 import { changeMount, mountSelector } from "../redux/slices/mountSlice";
 import { fetchPizzas, pizzaSelector } from "../redux/slices/pizzaSlice";
 import { searchSelector } from "../redux/slices/searchSlice";
+import { useAppDispatch } from "../redux/store";
+//import { pizzaInfo } from "../@types/pizzaInfo";
 
 function Home() {
-  //const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  
   const [searchParams, setSearchParams] = useSearchParams();
   const isSearchParams = React.useRef(false);
 
-  // const navigate = useNavigate()
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isMounted = useSelector(mountSelector);
   const searchValue = useSelector(searchSelector);
   const activeCategory = useSelector(categorySelector);
   const sortBy = useSelector(sortSelector);
   const pizzas = useSelector(pizzaSelector);
-  const page = useSelector(pageSelector);
-  console.log(pizzas)
+  const {page}   = useSelector(pageSelector);
+
 
   const pizzasOnPage = 6;
 
@@ -40,7 +38,8 @@ function Home() {
     setIsLoading(true);
     console.log("FETCHING")
     
-    dispatch(fetchPizzas({activeCategory, sortBy, searchValue, pizzasOnPage}))
+    dispatch(
+    fetchPizzas({activeCategory, sortBy, searchValue, pizzasOnPage}))
     if (!searchParams.get("page")) dispatch(changePage(0));
 
     setIsLoading(false);
@@ -53,7 +52,7 @@ function Home() {
       const params = Object.fromEntries(searchParams.entries());
       if (params.category) dispatch(changeCategory(params.category));
       if (params.sort) dispatch(changeSort(params.sort));
-      if (params.page) dispatch(changePage(params.page - 1));
+      if (params.page) dispatch(changePage(Number(params.page) - 1));
 
       isSearchParams.current = true;
       getPizzas()
@@ -72,17 +71,16 @@ function Home() {
   React.useEffect(() => {
     if (isMounted) {
       const queryString = {
-        category: activeCategory,
+        category: String(activeCategory),
         sort: sortBy,
-        page: page + 1,
+        page: String(page + 1),
       };
       setSearchParams(queryString);
-      console.log(queryString);
     } else {
       dispatch(changeMount(true));
     }
   }, [activeCategory, sortBy, page]);
-
+  
   return (
     <div className="container">
       <div className="content__top">
@@ -100,7 +98,7 @@ function Home() {
             })
           : pizzas
               .slice(page * pizzasOnPage, page * pizzasOnPage + pizzasOnPage)
-              .map((obj) => {
+              .map((obj: any) => {
                 return <Pizza key={obj.id} {...obj} />;
               })}
       </div>

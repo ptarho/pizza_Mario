@@ -1,7 +1,7 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const MyLoader = (props) => (
+const MyLoader = (props: {key: number}) => (
   <ContentLoader
     className="pizza-block"
     speed={2}

@@ -1,18 +1,29 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { cartSelector, clearCart } from "../../redux/slices/cartSlice";
+import { cartSelector, clearCart } from "../redux/slices/cartSlice";
 
-import styles from "./Cart.module.scss";
 import { Link } from "react-router-dom";
-import CartItem from "../../components/CartItem";
+import CartItem from "../components/CartItem";
+import EmptyCart from "../components/EmptyCart";
 
 function Cart() {
   const { items, totalSum } = useSelector(cartSelector);
-  const itemsAmount = items.reduce((sum, obj) =>  sum + obj.count, 0)
-  console.log(items, totalSum)
+  const itemsAmount = items.reduce((sum, obj) => sum + obj.count, 0);
+  console.log(items, totalSum);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const onClearCart = () => {
+    if (window.confirm("Are you sure you want to clear cart?")) {
+      console.log("Clearing cart")
+      dispatch(clearCart());
+    }
+  };
+
+  if (!itemsAmount) {
+    return <EmptyCart />;
+  }
 
   return (
     <div className="container container--cart">
@@ -50,7 +61,7 @@ function Cart() {
             </svg>
             Cart
           </h2>
-          <div onClick={() => dispatch(clearCart())} className="cart__clear">
+          <div onClick={() => onClearCart()} className="cart__clear">
             <svg
               width="20"
               height="20"
@@ -92,7 +103,9 @@ function Cart() {
           </div>
         </div>
         <div className="content__items">
-          {items.map(obj => <CartItem key={`${obj.id}_${obj.type}_${obj.size}`} {...obj}/>)}
+          {items.map((obj) => (
+            <CartItem key={`${obj.id}_${obj.type}_${obj.size}`} {...obj} />
+          ))}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">

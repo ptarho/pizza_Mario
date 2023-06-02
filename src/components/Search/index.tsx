@@ -8,14 +8,15 @@ import styles from "./Search.module.scss";
 function Search() {
   const value = useSelector(searchSelector);
   const dispatch = useDispatch();
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [input, setInput] = React.useState(value);
 
-  const clearInput = () => {
+  const clearInput = (event: React.MouseEvent<SVGSVGElement>) => {
+    console.log(event)
     setInput("");
     dispatch(changeInput(""));
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   const debouncedChangeHandler = React.useCallback(
@@ -25,7 +26,7 @@ function Search() {
     []
   );
 
-  const onChangeInput = (value) => {
+  const onChangeInput = (value: string) => {
     setInput(value);
     debouncedChangeHandler(value);
   };
@@ -51,7 +52,7 @@ function Search() {
       />
 
       <svg
-        onClick={() => clearInput()}
+        onClick={(e) => clearInput(e)}
         className={styles.closeIcon}
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"

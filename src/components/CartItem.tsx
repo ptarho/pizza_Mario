@@ -2,8 +2,11 @@ import React from "react";
 
 import { useDispatch } from "react-redux";
 import { addItem, removeItem, minusItem } from "../redux/slices/cartSlice";
+import { SinglePizza } from "../@types/singlePizza";
 
-function CartItem({ id, title, price, imageUrl, type, size, count }) {
+type CartProps = {id: number, title: string, price: number, imageUrl: string, type: string, size: number, count: number}
+
+const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, count }) => {
   const dispatch = useDispatch()
 
   return (
@@ -39,7 +42,7 @@ function CartItem({ id, title, price, imageUrl, type, size, count }) {
           </svg>
         </div>
         <b>{count}</b>
-        <div onClick={() => dispatch(addItem({id, type, size}))} className="button button--outline button--circle cart__item-count-plus">
+        <div onClick={() => dispatch(addItem({ id, type, size } as SinglePizza))} className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
             height="10"
