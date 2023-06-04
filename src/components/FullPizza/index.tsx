@@ -5,7 +5,7 @@ import styles from "./FullPizza.module.scss";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 import getPizzaAmount from "../../utils/getPizzaAmount";
-import { pizzaInfo } from "../../@types/pizzaInfo";
+import { pizzaInfo } from "../../@types/componentsTypes";
 
 type cartPizza = {
   id: number;

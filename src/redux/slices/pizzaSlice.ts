@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { changePageAmount } from "./pageSlice";
 import axios from "axios";
-import { pizzaInfo } from "../../@types/pizzaInfo";
+import { pizzaInfo } from "../../@types/componentsTypes";
 import { RootState } from "../store";
 
 type Params = {

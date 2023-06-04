@@ -10,6 +10,7 @@ import { cartSelector } from "../redux/slices/cartSlice";
 
 function Header() {
   const dispatch = useDispatch()
+  const isMounted = React.useRef(false)
   const onClickHome = () => {
     dispatch(changeCategory(0))
     dispatch(changePage(0))
@@ -20,6 +21,14 @@ function Header() {
   const {items, totalSum} = useSelector(cartSelector)
   //console.log(totalSum, items)
   const pizzaAmount = items.reduce((sum, obj) => sum + obj.count, 0)
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const newCart = JSON.stringify(items)
+      localStorage.setItem('cart', newCart)
+    }
+    isMounted.current = true
+  }, [items])
 
   return (
     <div className="header">

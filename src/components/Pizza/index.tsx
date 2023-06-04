@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import getPizzaAmount from "../../utils/getPizzaAmount";
-import { pizzaInfo } from "../../@types/pizzaInfo";
+import { pizzaInfo } from "../../@types/componentsTypes";
 
 const Pizza: React.FC<pizzaInfo> = ({ id, title, price, sizes, imageUrl, types }) => {
   const dispatch = useDispatch();

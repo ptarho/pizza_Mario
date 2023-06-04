@@ -2,11 +2,9 @@ import React from "react";
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 
 import styles from "./Error.module.scss";
-console.log(styles);
 
 function Error() {
   const error = useRouteError();
-  console.error(error);
   
   return (
     <div className={styles.errorPage}>

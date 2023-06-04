@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { calcTotalSum } from "../../utils/calcTotalSum";
-import { CartPizza } from "../../@types/cartPizza";
+import { CartPizza } from "../../@types/componentsTypes";
 import { RootState } from "../store";
-import { SinglePizza } from "../../@types/singlePizza";
+import { SinglePizza } from "../../@types/componentsTypes";
+import { getCartLS } from "../../utils/getCartLS";
 
 
 type CartState = {
@@ -11,8 +12,8 @@ type CartState = {
 }
 
 const initialState: CartState = {
-  items: [],
-  totalSum: 0,
+  items: getCartLS(),
+  totalSum: calcTotalSum(getCartLS()),
 };
 
 export const cartSlice = createSlice({
@@ -45,7 +46,7 @@ export const cartSlice = createSlice({
           obj.type === action.payload.type &&
           obj.size === action.payload.size
       );
-      if (pizza && pizza.count > 0) {
+      if (pizza && pizza.count > 1) {
         pizza.count--;
       }
       state.totalSum = calcTotalSum(state.items);

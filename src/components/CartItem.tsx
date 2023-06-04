@@ -2,7 +2,7 @@ import React from "react";
 
 import { useDispatch } from "react-redux";
 import { addItem, removeItem, minusItem } from "../redux/slices/cartSlice";
-import { SinglePizza } from "../@types/singlePizza";
+import { SinglePizza } from "../@types/componentsTypes";
 
 type CartProps = {id: number, title: string, price: number, imageUrl: string, type: string, size: number, count: number}
 
@@ -23,7 +23,7 @@ const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, 
         <p>{type}, {size} см.</p>
       </div>
       <div className="cart__item-count">
-        <div onClick={() => dispatch(minusItem({id, type, size}))} className="button button--outline button--circle cart__item-count-minus">
+        <button onClick={() => dispatch(minusItem({id, type, size}))} className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
             height="10"
@@ -40,9 +40,9 @@ const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, 
               fill="#EB5A1E"
             ></path>
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div onClick={() => dispatch(addItem({ id, type, size } as SinglePizza))} className="button button--outline button--circle cart__item-count-plus">
+        <button onClick={() => dispatch(addItem({ id, type, size } as SinglePizza))} className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
             height="10"
@@ -59,7 +59,7 @@ const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, 
               fill="#EB5A1E"
             ></path>
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{count * price} ₴</b>

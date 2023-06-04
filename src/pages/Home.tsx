@@ -29,21 +29,19 @@ function Home() {
   const activeCategory = useSelector(categorySelector);
   const sortBy = useSelector(sortSelector);
   const pizzas = useSelector(pizzaSelector);
-  const {page}   = useSelector(pageSelector);
-
+  const { page } = useSelector(pageSelector);
 
   const pizzasOnPage = 6;
 
   const getPizzas = async () => {
     setIsLoading(true);
-    console.log("FETCHING")
-    
-    dispatch(
-    fetchPizzas({activeCategory, sortBy, searchValue, pizzasOnPage}))
+    console.log("FETCHING");
+
+    dispatch(fetchPizzas({ activeCategory, sortBy, searchValue, pizzasOnPage }));
     if (!searchParams.get("page")) dispatch(changePage(0));
 
     setIsLoading(false);
-    //window.scrollTo(0, 0);  
+    //window.scrollTo(0, 0);
   };
 
   // if we open app via url with params save them in redux
@@ -55,7 +53,7 @@ function Home() {
       if (params.page) dispatch(changePage(Number(params.page) - 1));
 
       isSearchParams.current = true;
-      getPizzas()
+      getPizzas();
     }
   }, []);
 
@@ -80,7 +78,7 @@ function Home() {
       dispatch(changeMount(true));
     }
   }, [activeCategory, sortBy, page]);
-  
+
   return (
     <div className="container">
       <div className="content__top">
