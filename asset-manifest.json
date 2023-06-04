@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pizza_Mario/static/css/main.5f4baadb.css",
-    "main.js": "/pizza_Mario/static/js/main.c3ccddc9.js",
+    "main.js": "/pizza_Mario/static/js/main.bba9223e.js",
     "static/js/303.a7fd3ae4.chunk.js": "/pizza_Mario/static/js/303.a7fd3ae4.chunk.js",
     "static/css/139.9e670148.chunk.css": "/pizza_Mario/static/css/139.9e670148.chunk.css",
     "static/js/139.d9ef83ee.chunk.js": "/pizza_Mario/static/js/139.d9ef83ee.chunk.js",
@@ -9,7 +9,7 @@
     "static/js/45.07a302d1.chunk.js": "/pizza_Mario/static/js/45.07a302d1.chunk.js",
     "index.html": "/pizza_Mario/index.html",
     "main.5f4baadb.css.map": "/pizza_Mario/static/css/main.5f4baadb.css.map",
-    "main.c3ccddc9.js.map": "/pizza_Mario/static/js/main.c3ccddc9.js.map",
+    "main.bba9223e.js.map": "/pizza_Mario/static/js/main.bba9223e.js.map",
     "303.a7fd3ae4.chunk.js.map": "/pizza_Mario/static/js/303.a7fd3ae4.chunk.js.map",
     "139.9e670148.chunk.css.map": "/pizza_Mario/static/css/139.9e670148.chunk.css.map",
     "139.d9ef83ee.chunk.js.map": "/pizza_Mario/static/js/139.d9ef83ee.chunk.js.map",
@@ -18,6 +18,6 @@
   },
   "entrypoints": [
     "static/css/main.5f4baadb.css",
-    "static/js/main.c3ccddc9.js"
+    "static/js/main.bba9223e.js"
   ]
 }
