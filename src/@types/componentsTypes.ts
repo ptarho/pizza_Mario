@@ -6,6 +6,7 @@ export type pizzaInfo = {
   description?: string;
   types: number[];
   sizes: number[];
+  category?: number
 }
 
 export type SinglePizza = {
