@@ -16,7 +16,7 @@ export const fetchPizzas = createAsyncThunk<pizzaInfo[], Params>(
   async (params, thunkAPI) => {
     const { searchValue, activeCategory, sortBy, pizzasOnPage } = params;
     const [sortName, sortOrder] = sortBy.split(" ");
-    let { data } = await axios.get<pizzaInfo[]>("pizzas.json");
+    let { data } = await axios.get<pizzaInfo[]>("./pizza_Mario/pizzas.json");
     if (searchValue) {
       data = data.filter((e) => e.title.toLowerCase().includes(searchValue));
     }

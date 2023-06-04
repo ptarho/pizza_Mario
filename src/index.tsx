@@ -16,7 +16,7 @@ const Error = lazy(() => import("./pages/Error"));
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "pizza_Mario/",
     element: <App />,
     errorElement: (
       <Suspense fallback={"Loading..."}>
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <Home /> },
       {
-        path: "cart",
+        path: "/cart",
         element: (
           <Suspense fallback={"Loading..."}>
             <Cart />

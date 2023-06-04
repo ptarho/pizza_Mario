@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
       <div className="container">
         <div className="header__logo">
           <Link onClick={onClickHome} to="/">
-            <img width="38" src="/img/mario_logo.jpg" alt="Pizza logo" />
+            <img width="38" src="./pizza_Mario/img/mario_logo.jpg" alt="Pizza logo" />
           </Link>
           <div>
             <h1>Pizza Mario</h1>
