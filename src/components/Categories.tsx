@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { categorySelector, changeCategory } from "../redux/slices/filterSlice";
 import { changePage } from "../redux/slices/pageSlice"
 
-function Categories() {
+export const Categories = () => {
   const categories = ["All", "Meat", "Vegetarian", "Spicy", "With seafood"];
 
   const activeCategory = useSelector(categorySelector)
@@ -24,4 +24,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+

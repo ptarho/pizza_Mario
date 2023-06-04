@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import getPizzaAmount from "../../utils/getPizzaAmount";
 import { pizzaInfo } from "../../@types/componentsTypes";
 
-const Pizza: React.FC<pizzaInfo> = ({ id, title, price, sizes, imageUrl, types }) => {
+export const Pizza: React.FC<pizzaInfo> = ({ id, title, price, sizes, imageUrl, types }) => {
   const dispatch = useDispatch();
   const typeNames = ["Thin", "Traditional"];
   const pizzaAmount = getPizzaAmount(id)
@@ -84,4 +84,3 @@ const Pizza: React.FC<pizzaInfo> = ({ id, title, price, sizes, imageUrl, types }
   );
 }
 
-export default Pizza;

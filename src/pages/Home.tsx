@@ -1,12 +1,20 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 
-import Categories from "../components/Categories";
-import Sort from "../components/Sort";
-import Pizza from "../components/Pizza";
-import Skeleton from "../components/Pizza/Skeleton";
-import Search from "../components/Search";
-import Pagination from "../components/Pagination";
+// import Categories from "../components/Categories";
+// import Sort from "../components/Sort";
+// import Pizza from "../components/Pizza";
+// import Skeleton from "../components/Pizza/Skeleton";
+// import Search from "../components/Search";
+// import Pagination from "../components/Pagination";
+import {
+  Categories,
+  Sort,
+  Pizza,
+  Skeleton,
+  Search,
+  Pagination,
+} from "../components";
 
 import { useSelector } from "react-redux";
 import { changePage, pageSelector } from "../redux/slices/pageSlice";
@@ -31,13 +39,15 @@ function Home() {
   const pizzas = useSelector(pizzaSelector);
   const { page } = useSelector(pageSelector);
 
-  const pizzasOnPage = 6;
+  const pizzasOnPage = 4;
 
   const getPizzas = async () => {
     setIsLoading(true);
     console.log("FETCHING");
 
-    dispatch(fetchPizzas({ activeCategory, sortBy, searchValue, pizzasOnPage }));
+    dispatch(
+      fetchPizzas({ activeCategory, sortBy, searchValue, pizzasOnPage })
+    );
     if (!searchParams.get("page")) dispatch(changePage(0));
 
     setIsLoading(false);

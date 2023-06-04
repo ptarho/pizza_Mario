@@ -3,4 +3,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  button {
+    margin: 15px;
+    padding: 15px;
+    background-color: inherit;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 15px;
+    &:hover {
+      background-color: #c0c0c0;
+      color: white;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
+  }
 }

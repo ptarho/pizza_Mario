@@ -7,7 +7,7 @@ type sortListItem = {
   order: string;
 }
 
-function Sort() {
+export const Sort: React.FC = () => {
   const [isOpened, setIsOpened] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null)
   const sortList: sortListItem[] = [
@@ -77,4 +77,4 @@ function Sort() {
 }
 
 
-export default Sort;
+

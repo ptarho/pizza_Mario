@@ -3,7 +3,7 @@ import styles from "./Pagination.module.scss"
 import { useSelector, useDispatch } from 'react-redux';
 import { changePage, pageSelector } from '../../redux/slices/pageSlice';
 
-function Pagination() {
+export const Pagination: React.FC = () => {
   const dispatch = useDispatch()
   const {page, amount} = useSelector(pageSelector)
   //console.log(page, amount)

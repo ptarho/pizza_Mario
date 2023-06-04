@@ -16,5 +16,14 @@
   .emoji {
     font-size: 40px;
   }
+  .button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:active {
+      transform: translateY(1px);
+    }
+  }
 
 }

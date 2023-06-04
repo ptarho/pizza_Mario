@@ -8,7 +8,7 @@ import { changePage } from "../redux/slices/pageSlice";
 import { changeMount } from "../redux/slices/mountSlice";
 import { cartSelector } from "../redux/slices/cartSlice";
 
-function Header() {
+export const Header: React.FC = () => {
   const dispatch = useDispatch()
   const isMounted = React.useRef(false)
   const onClickHome = () => {
@@ -82,5 +82,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

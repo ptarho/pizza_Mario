@@ -1,11 +1,11 @@
 import React from "react";
-import { useRouteError, isRouteErrorResponse } from "react-router-dom";
+import { useRouteError, isRouteErrorResponse, useNavigate } from "react-router-dom";
 
 import styles from "./Error.module.scss";
 
 function Error() {
   const error = useRouteError();
-  
+  const navigate = useNavigate()
   return (
     <div className={styles.errorPage}>
       <div className={styles.container}>
@@ -15,6 +15,7 @@ function Error() {
         <p>
           {isRouteErrorResponse(error) ? <i>{error.statusText || error.status}</i> : <i>Unknown error occurred </i>}
         </p>
+        <button className={styles.button} onClick={() => navigate("/")}>Return on home page</button>
       </div>
     </div>
   );

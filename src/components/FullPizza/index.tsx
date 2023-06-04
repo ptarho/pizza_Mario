@@ -16,7 +16,7 @@ type cartPizza = {
   size: number;
 }
 
-function FullPizza() {
+const FullPizza: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -122,4 +122,4 @@ function FullPizza() {
   );
 }
 
-export default FullPizza;
+export default FullPizza

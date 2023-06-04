@@ -6,7 +6,7 @@ import { SinglePizza } from "../@types/componentsTypes";
 
 type CartProps = {id: number, title: string, price: number, imageUrl: string, type: string, size: number, count: number}
 
-const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, count }) => {
+export const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, count }) => {
   const dispatch = useDispatch()
 
   return (
@@ -88,4 +88,3 @@ const CartItem: React.FC<CartProps>= ({ id, title, price, imageUrl, type, size, 
   );
 }
 
-export default CartItem;

@@ -5,7 +5,7 @@ import debounce from "lodash.debounce";
 
 import styles from "./Search.module.scss";
 
-function Search() {
+export const Search: React.FC = () => {
   const value = useSelector(searchSelector);
   const dispatch = useDispatch();
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -64,4 +64,3 @@ function Search() {
   );
 }
 
-export default Search;
