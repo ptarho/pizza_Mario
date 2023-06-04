@@ -1,0 +1,167 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://salad.com.ua/upload/iblock/040/qi8d73xgx0qz5ys8ixafv2v36iarp3rf.png",
+    "title": "Quattro formaggi",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 189,
+    "category": 2,
+    "rating": 4,
+    "description": "On bechamel sauce with mozzarella, Brie cheese, Gorgonzola cheese and Parmesan cheese. Garnished with basil"
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://salad.com.ua/upload/iblock/23a/4oeu417lknv1cq53he2lsruknd1t4j7f.png",
+    "title": "Vitella",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 210,
+    "category": 1,
+    "rating": 5,
+    "description": "On tomato sauce with mozzarella, tomatoes, roast beef, baby spinach, capers and Tone sauce."
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://salad.com.ua/upload/iblock/673/56uuzn333x472bin3mexe9jj7oiq2xr5.png",
+    "title": "Riviera",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 259,
+    "category": 4,
+    "rating": 4,
+    "description": "On bechamel sauce with mozzarella, tiger prawns, Brie cheese, pistachios, Parmesan and rosemary"
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://salad.com.ua/upload/iblock/64b/8b7psn9cvxfgptqwx1q2673ny41ese9i.png",
+    "title": "Capricciosa ",
+    "types": [1],
+    "sizes": [26, 30, 40],
+    "price": 175,
+    "category": 1,
+    "rating": 3,
+    "description": "On tomato sauce with mozzarella, ham, bacon, mushrooms, olives and artichokes."
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://salad.com.ua/upload/iblock/824/9t1w1yu9kk7frj38e4chdai1ft7wh6g9.PNG",
+    "title": "El diablo",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 182,
+    "category": 3,
+    "rating": 8,
+    "description": "On tomato and sriracha sauces with mozzarella, pepperoni, gorgonzola."
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://salad.com.ua/upload/iblock/08c/e6382qewmh091gsihs7cpfkx1hciwp2s.jpg",
+    "title": "Pancetta gorgonzola",
+    "types": [0],
+    "sizes": [30, 40],
+    "price": 189,
+    "category": 1,
+    "rating": 8,
+    "description": "Tomato sauce, mozzarella cheese, gorgonzola cheese, bacon, pear, almond flakes and arugula (can be replaced with salad mix)."
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://salad.com.ua/upload/iblock/b64/ay6y0507xi9wrnax0kln333hae127svf.png",
+    "title": "Mario",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 175,
+    "category": 1,
+    "rating": 2,
+    "description": "On tomato sauce, with mozzarella cheese, ham, hunting sausages, bacon and bell pepper"
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://salad.com.ua/upload/resize_cache/iblock/71e/1000_1000_0/71e97ffb98f9b874eae031c152ee0fe5.jpg",
+    "title": "Al crudo",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 160,
+    "category": 1,
+    "rating": 3,
+    "description": "On tomato and mayonnaise sauces with mozzarella, chicken fillet sous vide, tomatoes, onions and mushrooms"
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://salad.com.ua/upload/iblock/914/i6t9c6ooaka11e6fl95j3f31io5hx4do.jpg",
+    "title": "Parma",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 195,
+    "category": 1,
+    "rating": 10,
+    "description": "Tomato sauce with mozzarella, ham, Parma ham, salad mix, cherry tomatoes and cream cheese"
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://salad.com.ua/upload/iblock/9c6/umfnclwqqqr2imgdsqi322pycuu4c1st.jpg",
+    "title": "Cesario🌱",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 190,
+    "category": 2,
+    "rating": 7,
+    "description": "Caesar and béchamel sauces with mozzarella, chicken fillet sous vide, bacon, tomatoes, cherry tomatoes, parmesan and salad mix"
+  },
+  {
+    "id": 10,
+    "imageUrl": "https://salad.com.ua/upload/iblock/feb/12fp15ux66lzlh4377l6krg85vw8j1oh.png",
+    "title": "4 cheese",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 185,
+    "category": 2,
+    "rating": 4,
+    "description": "Bechamel sauce with mozzarella, baby mozzarella, parmesan and cheddar cheese."
+  },
+  {
+    "id": 11,
+    "imageUrl": "https://salad.com.ua/upload/iblock/594/n5o5tf243kv8s1mn6761o3jelrlffeja.jpg",
+    "title": "Festa di carne",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 210,
+    "category": 1,
+    "rating": 5,
+    "description": "Tomato and mayonnaise sauces, mozzarella cheese, sous-vide chicken fillet, sous-vide pork, cheese-smoked pork neck, mushrooms, olives, arugula (can be replaced with salad mix)"
+  },
+  {
+    "id": 12,
+    "imageUrl": "https://salad.com.ua/upload/iblock/2ce/1k7azqeblpwprgickpbu49p2te5ra0xs.png",
+    "title": "Margherita",
+    "types": [0, 1],
+    "sizes": [30, 40],
+    "price": 150,
+    "category": 2,
+    "rating": 4,
+    "description": "Tomato sauce with mozzarella, mozzarella in brine, tomatoes and Pesto sauce"
+  },
+  {
+    "id": 13,
+    "imageUrl": "https://salad.com.ua/upload/iblock/34f/2q4fxndto3ayssuh1ntj0lpxg6qfrruy.PNG",
+    "title": "Marinara",
+    "types": [0, 1],
+    "sizes": [30, 40],
+    "price": 282,
+    "category": 4,
+    "rating": 10,
+    "description": "Tomato and béchamel sauces with mozzarella, salmon, tiger prawns, squid, tomatoes and cream cheese. Served with salad mix and lemon."
+  },
+  {
+    "id": 14,
+    "imageUrl": "https://salad.com.ua/upload/iblock/c53/ldktapyf48yugud31588yohfjfp1e3qd.png",
+    "title": "Carbonara",
+    "types": [0, 1],
+    "sizes": [30, 40],
+    "price": 169,
+    "category": 1,
+    "rating": 7,
+    "description": "Tomato sauce with mozzarella, bacon, ham, parmesan cheese and egg yolk"
+  }
+]
